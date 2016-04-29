@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"> -->
+
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/angular-youtube-mb/src/angular-youtube-embed.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/app-config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+
+  </head>
+  <body ng-app="toptal">
+
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Search videos</h1>
+      </ion-header-bar>
+
+      <ion-content>
+        <ion-list ng-controller="ListController as vm">
+
+          <div class="bar bar-header item-input-inset">
+            <label class="item-input-wrapper">
+              <i class="icon ion-ios-search placeholder-icon"></i>
+              <input ng-model="vm.topic" ng-keyup="vm.search()" ng-blur="vm.search()" type="search" placeholder="Topic to search">
+            </label>
+          </div>
+          <ion-item class="list" ng-repeat="video in vm.videos">
+
+              {{video.title}}
+              <div class="item item-thumbnail-left" href="#">
+                <!-- <img ng-click=" vm.play(video.videoId)"  ng-src="{{video.urlThumbnails}}">
+                <div ng-if="video.render"> -->
+                  <youtube-video video-id="video.videoId" player="vm.player"></youtube-video>
+                <!-- </div> -->
+                <!-- <h2>{{video.title}}</h2>
+                <p>{{video.description}}</p>
+                <p>{{video.videoId}}</p> -->
+              </div>
+
+          </ion-item>
+        </ion-list>
+      </ion-content>
+
+    </ion-pane>
+  </body>
+</html>
