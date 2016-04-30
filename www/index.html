@@ -46,20 +46,13 @@
               <input ng-model="vm.topic" ng-keyup="vm.search()" ng-blur="vm.search()" type="search" placeholder="Topic to search">
             </label>
           </div>
-          <ion-item class="list" ng-repeat="video in vm.videos">
-
-              {{video.title}}
-              <div class="item item-thumbnail-left" href="#">
-                <!-- <img ng-click=" vm.play(video.videoId)"  ng-src="{{video.urlThumbnails}}">
-                <div ng-if="video.render"> -->
-                  <youtube-video video-id="video.videoId" player="vm.player"></youtube-video>
-                <!-- </div> -->
-                <!-- <h2>{{video.title}}</h2>
-                <p>{{video.description}}</p>
-                <p>{{video.videoId}}</p> -->
+          <div class="list" ng-repeat="video in vm.videos">
+            <div class="item item-thumbnail-left" >
+              <div class="embed-responsive embed-responsive-16by9">
+                <youtube-video class="embed-responsive-item" video-id="video.videoId" player-vars="playerVars"></youtube-video>
               </div>
-
-          </ion-item>
+            </div>
+          </div>
         </ion-list>
       </ion-content>
 
